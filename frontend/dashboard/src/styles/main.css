@@ -1,0 +1,102 @@
+.router {
+    color: black;
+    list-style: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.sidebar {
+    width: 287px;
+}
+
+.roots {
+    width: 78%;
+    overflow: auto;
+}
+
+.logo {
+    width: 120px;
+
+}
+
+.btn {
+    border: 1px solid grey;
+    right: 0;
+}
+
+.card1 {
+    background-color: #ffa5003d;
+}
+
+.card2 {
+    background-color: #4aefef4d;
+}
+
+.card3 {
+    background-color: #ffc0cb99;
+}
+
+.card4 {
+    background-color: #7fffd48f;
+}
+
+.orderstatic {
+    height: 60px;
+    border-radius: 5px;
+
+}
+
+
+li {
+    list-style: none;
+
+}
+
+
+
+.sold {
+    margin-left: 180px;
+}
+
+.amount {
+    margin-left: 70px;
+}
+
+.itemsold {
+    width: 110px;
+
+}
+
+img {
+    height: 70px;
+    width: 56px;
+
+}
+
+.itemname {
+    width: 255px;
+}
+
+
+
+@media only screen and (max-width:990px) {
+    .sidebar {
+        display: none;
+    }
+
+    .roots {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (min-width:990px) {
+
+    .navbar-sidebar {
+        display: none;
+    }
+
+}
