@@ -5,7 +5,7 @@ import AuthRoutes from '../controller/admin/auth/auth.js';
 import UserRoutes from '../controller/user/auth/auth.js';
 import * as PaymentRoutes from '../controller/admin/payment.js';
 
-    
+
 const router = express.Router();
 
 // ------------------admin register and login routes----------------

@@ -16,11 +16,11 @@ const __dirname = dirname(__filename);
 const app = express();
 
 app.use(cors({
-    origin: [
-        process.env.FRONTEND_URL,
-        process.env.FRONTEND_URL2,
-    ],
-    credentials: true,
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+  ],
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -29,13 +29,18 @@ app.use('', apiRoutes);
 app.use(errorHandler);
 app.use(express.urlencoded({ extended: true }));
 
-const mongoUri = `${process.env.MONGODB_URL}/${process.env.MONGODB_DB}`;
+const mongoUri = process.env.MONGODB_URI;
+
 mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 }).then(() => {
-    console.log('MongoDB connected');
-    app.listen(process.env.PORT, () =>
-        console.log(`Server running on port ${process.env.PORT}`)
-    );
-}).catch(err => console.error('MongoDB connection error:', err));
+  console.log('✅ MongoDB connected');
+
+  const port = process.env.PORT;
+  app.listen(port, () => {
+    console.log(`🚀 Server running on http://localhost:${port}`);
+  });
+}).catch(err => {
+  console.error('❌ MongoDB connection error:', err);
+});

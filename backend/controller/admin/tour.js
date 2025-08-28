@@ -11,18 +11,23 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
 exports.displayTours = async (req, resp) => {
-    let db = await dbconnection();
-    let collection = db.collection('tour');
+    try {
+        const db = await dbconnection();
+        const collection = db.collection('tour');
 
-    const page = parseInt(req.query._page) || 1;
-    const limit = 10;
-    const skip = (page - 1) * limit;
+        const page = parseInt(req.query._page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
 
-    const data = await collection.find().skip(skip).limit(limit).toArray();
-    resp.send(data);
+        const data = await collection.find().skip(skip).limit(limit).toArray();
+        resp.status(200).json(data);
+    } catch (error) {
+        console.error("Error in displayTours:", error);
+        resp.status(500).json({ message: "Failed to fetch tours", error: error.message });
+    }
 };
-
 exports.insertTours = [
     upload.single('image'),
     async (req, res) => {
@@ -109,7 +114,7 @@ exports.allorders = async (req, res) => {
 
     let db = await dbconnection();
     const collection = db.collection('orders');
-    const { tourId, tourTitle, username, passengers, totalPrice, razorpayPaymentId, razorpayOrderId,totalPassenger } = req.body;
+    const { tourId, tourTitle, username, passengers, totalPrice, razorpayPaymentId, razorpayOrderId, totalPassenger } = req.body;
 
     const data = {
         tourId: tourId,
